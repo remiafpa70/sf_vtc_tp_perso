@@ -32,6 +32,11 @@ class Conducteur
      */
     private $age;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $couleur_des_yeux;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Conducteur
     public function setAge(?string $age): self
     {
         $this->age = $age;
+
+        return $this;
+    }
+
+    public function getCouleurDesYeux(): ?string
+    {
+        return $this->couleur_des_yeux;
+    }
+
+    public function setCouleurDesYeux(string $couleur_des_yeux): self
+    {
+        $this->couleur_des_yeux = $couleur_des_yeux;
 
         return $this;
     }
