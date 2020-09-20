@@ -16,19 +16,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class VehiculeController extends AbstractController
 {
     /**
-     * @Route("/", name="vehicule_index", methods={"GET"})
+     * @Route("/", name="vehicule_index", methods={"GET","POST"})
      */
-    public function index(VehiculeRepository $vehiculeRepository): Response
-    {
-        return $this->render('vehicule/index.html.twig', [
-            'vehicules' => $vehiculeRepository->findAll(),
-        ]);
-    }
-
-    /**
-     * @Route("/new", name="vehicule_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
+    public function index(VehiculeRepository $vehiculeRepository, Request $request): Response
     {
         $vehicule = new Vehicule();
         $form = $this->createForm(VehiculeType::class, $vehicule);
@@ -42,10 +32,10 @@ class VehiculeController extends AbstractController
             return $this->redirectToRoute('vehicule_index');
         }
 
-        return $this->render('vehicule/new.html.twig', [
-            'vehicule' => $vehicule,
+        return $this->render('vehicule/index.html.twig', [
+            'vehicules' => $vehiculeRepository->findAll(),
             'form' => $form->createView(),
-        ]);
+            ]);
     }
 
     /**
