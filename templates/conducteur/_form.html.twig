@@ -1,4 +1,19 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+  <div class="form-group">
+    <label >Nom</label>
+    {{ form_widget(form.nom, { 'attr' : {'class': 'form-control'}}) }}
+  </div>
+  <div class="form-group">
+    <label >Prénom</label>
+    {{ form_widget(form.prenom, { 'attr' : {'class': 'form-control'}}) }}
+  </div>
+    <div class="form-group">
+    <label >Age</label>
+    {{ form_widget(form.age, { 'attr' : {'class': 'form-control'}}) }}
+  </div>
+    <div class="form-group">
+    <label >eyes color</label>
+    {{ form_widget(form.couleur_des_yeux, { 'attr' : {'class': 'form-control'}}) }}
+  </div>
+  <button type="submit" class="btn btn-primary">Valider</button>
 {{ form_end(form) }}

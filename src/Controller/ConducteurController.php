@@ -16,19 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class ConducteurController extends AbstractController
 {
     /**
-     * @Route("/", name="conducteur_index", methods={"GET"})
+     * @Route("/", name="conducteur_index", methods={"GET", 
+     * "POST"})
      */
-    public function index(ConducteurRepository $conducteurRepository): Response
-    {
-        return $this->render('conducteur/index.html.twig', [
-            'conducteurs' => $conducteurRepository->findAll(),
-        ]);
-    }
-
-    /**
-     * @Route("/new", name="conducteur_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
+    public function index(ConducteurRepository $conducteurRepository, Request $request): Response
     {
         $conducteur = new Conducteur();
         $form = $this->createForm(ConducteurType::class, $conducteur);
@@ -41,9 +32,8 @@ class ConducteurController extends AbstractController
 
             return $this->redirectToRoute('conducteur_index');
         }
-
-        return $this->render('conducteur/new.html.twig', [
-            'conducteur' => $conducteur,
+        return $this->render('conducteur/index.html.twig', [
+            'conducteurs' => $conducteurRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }

@@ -15,6 +15,7 @@ class ConducteurType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('age')
+            ->add('couleur_des_yeux')
         ;
     }
 
